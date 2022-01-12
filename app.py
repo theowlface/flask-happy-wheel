@@ -51,8 +51,8 @@ class User(db.Model, UserMixin):
     hash_pw = db.Column(db.String(50))
     email = db.Column(db.String(50), nullable=False, unique=True)
     date_added = db.Column(db.DateTime, default=datetime.utcnow())
-    # orders =  db.relationship('Order', backref='user', lazy = True)
-    # role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
+    orders =  db.relationship('Order', backref='user', lazy = True)
+    role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
     #hashing password
     @property
     def password(self):
@@ -75,7 +75,7 @@ class Order(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     order_name = db.Column(db.String(50))
     date_added = db.Column(db.DateTime, default=datetime.utcnow())
-    # user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
 #Creating a class for Role table
 class Role(db.Model):
@@ -83,7 +83,7 @@ class Role(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     role_name = db.Column(db.String(50), unique=True)
     date_added = db.Column(db.DateTime, default=datetime.utcnow())
-    # users = db.relationship('User', backref='role', lazy = True)
+    users = db.relationship('User', backref='role', lazy = True)
 
 #class for sing up  Form 
 class Singup_from(FlaskForm):
@@ -136,7 +136,7 @@ def signup():
     email = None
     password = None
     password_2= None
-    # role_id = 2
+    role_id = 1
     #if the request is POST, Validate the Form 
     if request.method == "POST":
         #search the user by email
@@ -146,7 +146,7 @@ def signup():
             #hash the password
             hash_pw = generate_password_hash(form.password.data,"sha256")
             #add user details
-            user = User(first_name = form.first_name.data, last_name = form.last_name.data, email = form.email.data, hash_pw= hash_pw)
+            user = User(first_name = form.first_name.data, last_name = form.last_name.data, email = form.email.data, hash_pw= hash_pw, role_id=role_id)
             db.session.add(user)
             db.session.commit()
             #go to log in page
