@@ -26,7 +26,8 @@ moment = Moment(app)
 #secret key for securly singing the session cookie
 app.config["SECRET_KEY"] = "secret keeey"
 #connecting DB
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://itjvekiwhbugqd:a66f87cf3e57d191c37e79ccb838d3f20c83b88087917bf0ed840e1ce15a32ac@ec2-176-34-105-15.eu-west-1.compute.amazonaws.com:5432/d7sogj4jsf52u'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'DATABASE_URL'
+SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URL']
 db = SQLAlchemy(app)
 #migrate
 migrate = Migrate(app, db)
