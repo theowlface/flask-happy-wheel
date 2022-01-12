@@ -136,7 +136,7 @@ def signup():
     email = None
     password = None
     password_2= None
-    role_id = 1
+    role_id = 2
     #if the request is POST, Validate the Form 
     if request.method == "POST":
         #search the user by email
