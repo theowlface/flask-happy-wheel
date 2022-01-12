@@ -51,7 +51,7 @@ class User(db.Model, UserMixin):
     hash_pw = db.Column(db.String(50))
     email = db.Column(db.String(50), nullable=False, unique=True)
     date_added = db.Column(db.DateTime, default=datetime.utcnow())
-    orders =  db.relationship('Order', backref='user', lazy = True)
+    orders =  db.relationship('Order', backref='user', lazy='dynamic')
     role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
     #hashing password
     @property
@@ -83,7 +83,7 @@ class Role(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     role_name = db.Column(db.String(50), unique=True)
     date_added = db.Column(db.DateTime, default=datetime.utcnow())
-    users = db.relationship('User', backref='role', lazy = True)
+    users = db.relationship('User', backref='role', lazy='dynamic')
 
 #class for sing up  Form 
 class Singup_from(FlaskForm):
