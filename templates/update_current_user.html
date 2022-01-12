@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %} Update Information {% endblock %}
+
+{% block content %}
+{{super()}}
+
+<!-- if the id to change is same as user id then show edit page -->
+{% if id == current_user.id %}
+<div class="container">
+<div class="shadow p-3 mb-5 bg-body rounded">
+    <form method="POST">
+        <div class="mb-3">
+    <br>
+    {{ form.hidden_tag()}}
+    {{ form.first_name.label }}
+    {{ form.first_name(class="form-control form-control-sm", value = user_to_update.first_name) }}
+    
+    {{ form.last_name.label(class="form-label") }}
+    {{ form.last_name(class="form-control", value=user_to_update.last_name) }}
+    
+    {{ form.email.label(class="form-label")}}
+    {{ form.email(class="form-control form-control-lg", value=user_to_update.email) }}
+    
+    {{ form.password.label(class="form-label")}}
+    {{ form.password(class="form-control form-control-lg") }}
+    <br>
+    {{ form.update_btn(class="btn btn-outline-primary") }}
+    <!-- if the id is not the same as user id then send error message -->
+{% else %}
+    <div class="alert alert-danger d-flex align-items-center" role="alert">
+        <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+        <div>
+        You don't Have Premission
+        </div>
+    </div>
+{% endif %}   
+    <br>
+    <br>
+        </div>
+    </form>  
+</div>
+       
+
+
+{% endblock %}

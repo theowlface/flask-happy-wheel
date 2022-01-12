@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %} My Account {% endblock %}
+
+{% block content %}
+{{ super() }}
+    <form method="POST">
+    <br>
+        <div class="mb-3">
+    {{ form.hidden_tag()}}
+    {{ form.email.label(class="form-label")}}
+    {{ form.email(class="form-control", placeholder="Email") }}
+
+    {{ form.password.label(class="form-label")}}
+    {{ form.password(class="form-control",  placeholder="Password") }}
+    <br>
+
+    {{ form.login_btn(class="btn btn-secondary") }}
+        </div>
+    </form>      
+{% endblock %}

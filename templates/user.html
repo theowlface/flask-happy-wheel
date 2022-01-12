@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %} My Account {% endblock %}
+
+{% block content %}
+{{super()}}
+  <br>
+  <!-- edit profile button,'left side' -->
+  <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <a href="{{url_for('update_current_user', id=current_user.id)}}" class="btn btn-secondary">Edit Profile</a>
+  </div>
+  <br>
+<!-- greeting user and show his products , button to redirect to add product page -->
+  <div class="card">
+      <h5 class="card-header"><strong> Hello {{current_user.first_name | capitalize }}</strong></h5>
+      <div class="card-body">
+        {% for order in orders %}
+          {% if order.user_id == current_user.id %}    
+          <div class="card" style="width: 18rem;">
+            <a class="btn btn-secondary" href="{{url_for('index')}}"><h5 class="card-title fs-1 fw-bold">{{order.order_name}}</h5></a>
+            <img src="{{ url_for('static',filename='/images/package.png')}}" class="card-img-top" alt="...">
+            <div class="card-body">
+              <p class="card-text">The Package includes bla bla bla.</p>
+              <p class="card-text">{{order.date_added}}</p>
+            </div>
+          </div>  
+            <h5 class="card-title"></h5>
+            
+          {% endif %}
+        {% endfor %}
+        <br>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+          <a href="{{url_for('current_user_add_order',id=current_user.id)}}" class="btn btn-secondary ">Add Product</a>
+        </div>
+      </div>
+      
+    </div>
+
+
+
+{% endblock %}
+
+

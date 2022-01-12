@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block title %} Home Page {% endblock %}
+
+{% block content %}
+{{ super() }}
+
+    <!-- <img id="home_logo" src = "{{ url_for('static',filename='/images/Happy_Wheels_Logo.png')}}"> -->
+    <img src="{{ url_for('static',filename='/images/Happy_Wheels_Logo.png')}}" class="img-fluid" alt="..."> 
+
+
+        <div id="pricing-table" class="clear">
+            <div class="plan">
+                <h3>INDIVIDUAL PRICES<span>40€</span></h3>
+                <a class="signup" href="">Buy</a>         
+                <ul>
+                    <li><b>60</b>  minutes for lessons</li>
+                    <li> Interim test - <b>180€ </b></li>
+                    <li> Practical exam - <b>250€ </b></li>
+                    <li> Student card</li>			
+                </ul> 
+            </div>
+            <div class="plan" id="most-popular">
+                <h3>PACKAGE 3<span>1375€</span></h3>
+                <a class="signup" href="">Buy</a>        
+                <ul>
+                    <li><b>30</b> driving lessons</li>
+                    <li><b>60</b> minutes for lsson </li>
+                    <li> Practical exam</li>
+                    <li> Student card</li>				
+                </ul>    
+            </div>
+            <div class="plan">
+                <h3>PACKAGE 2<span>1025€</span></h3>
+                <a class="signup" href="{{url_for('login')}}">Buy</a>
+                <ul>
+                    <li><b>20</b> 20 driving lessons</li>
+                    <li><b>60</b> minutes for lsson </li>
+                    <li> Practical exam</li>
+                    <li> Student card</li>			
+                </ul>
+            </div>
+            <div class="plan">
+                <h3>PACKAGE 1<span>625€</span></h3>
+                <a class="signup" href="">Buy</a>		
+                <ul>
+                    <li><b>10</b> driving lessons</li>
+                    <li><b>60</b> minutes for lsson </li>
+                    <li> Practical exam</li>		
+                    <li> Student card</li>		
+                </ul>
+            </div> 	
+        </div>
+
+        </ul>
+    </h1>
+    <div class="time_footer" >
+        <footer>
+            <span> The local date and time is: {{ moment(current_time).format('LLL') }} </span>
+        </footer> 
+    </div> -->
+{% endblock %}

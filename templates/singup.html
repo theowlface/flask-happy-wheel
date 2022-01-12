@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %} My Account {% endblock %}
+
+{% block content %}
+{{ super() }}
+
+<!-- div to put fields in border -->
+<div class="shadow p-3 mb-5 bg-body rounded">
+    <form method="POST">
+        <div class="mb-3">
+    <br>
+    {{ form.hidden_tag()}}
+    {{ form.first_name.label }}
+    {{ form.first_name(class="form-control form-control-sm", placeholder="First name") }}
+    <br>
+    {{ form.last_name.label(class="form-label") }}
+    {{ form.last_name(class="form-control", placeholder="Last name") }}
+    <br>
+    {{ form.email.label(class="form-label")}}
+    {{ form.email(class="form-control form-control-lg", placeholder="Email") }}
+    <br>
+    {{ form.password.label(class="form-label")}}
+    {{ form.password(class="form-control", placeholder="Password") }}
+    <br>
+    {{ form.password_2.label(class="form-label")}}
+    {{ form.password_2(class="form-control", placeholder="Confirm Password") }}
+    <br>
+    {{ form.signup_btn(class="btn btn-secondary") }}
+        </div>
+</div>
+    </form>     
+
+
+
+
+{% endblock %}

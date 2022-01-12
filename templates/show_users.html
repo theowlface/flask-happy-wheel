@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+
+{% block title %} Users in DB {% endblock %}
+
+{% block content %}
+{{super()}}
+{% if  current_user.role_id == 1 %}
+<!-- creating table to show users  -->
+<div class="shadow p-3 mb-5 bg-body rounded">
+  <table class="table table-light table-hover">
+      <thead class="">
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Role</th>
+          <th scope="col">First Name</th>
+          <th scope="col">Last Name</th>
+          <th scope="col">Email Address</th>
+          <th scope="col">Orders</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+  
+      <tbody>
+      {% for our_user in our_users %}
+        <tr>
+          <th scope="row"> {{our_user.id}} </th>
+          <th scope="row"> {{our_user.role.role_name}} </th>
+          <td> {{our_user.first_name}} </td>
+          <td> {{our_user.last_name}} </td>
+          <td> {{our_user.email}} </td>
+          <td> </td>
+          <td> <a class="btn btn-outline-primary" href="{{url_for('update', id=our_user.id)}}" role="button">Edit User</a></td>
+          <td> <a class="btn btn-outline-danger" href="{{url_for('delete_user', id=our_user.id)}}" role="button">Delete the user</a></td>
+        </tr>
+      </tbody>
+      {% endfor %}
+    </table>
+  </div>
+
+<!-- creating table to show users  -->
+<div class="shadow p-3 mb-5 bg-body rounded">
+  <table class="table table-light table-hover">
+      <thead class="">
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Order Name</th>
+          <th scope="col">User Name</th>
+          <th scope="col">User ID</th>
+          <th scope="col">Date</th>
+          <th> <a class="btn btn-outline-primary" href="{{url_for('add_order')}}" role="button">add order</a></td>
+          <th scope="col"></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+  
+      <tbody>
+      {% for our_order in our_orders %}
+        <tr>
+        <th scope="row"> {{our_order.id}} </th>
+        <th scope="row"> {{our_order.order_name}} </th>
+        <td> {{our_order.user.first_name}} </td>
+        <td> {{our_order.user.id }} </td>
+        <td> {{our_order.date_added}} </td>
+        <td> <a class="btn btn-outline-danger" href="{{url_for('delete_order', id = our_order.id)}}" role="button">Delete order</a></td>
+      </tr>
+    </tbody>
+      {% endfor %}
+  </table>
+  </div>
+
+  <!-- creating table to show users  -->
+<div class="shadow p-3 mb-5 bg-body rounded">
+  <table class="table table-light table-hover">
+      <thead class="">
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Role name</th>
+          <th scope="col">User Name</th>
+          <th scope="col">User ID</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+  
+      <tbody>
+      {% for our_role in our_roles %}
+        <tr>
+        <th scope="row"> {{our_role.id}} </th>
+        <th scope="row"> {{our_role.role_name}} </th>
+
+        <td> </td>
+      </tr>
+    </tbody>
+      {% endfor %}
+  </table>
+  </div>
+{% else %}
+<div class="alert alert-danger d-flex align-items-center" role="alert">
+    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+    <div>
+    You don't Have Premission
+    </div>
+</div>
+{% endif %}
+
+{% endblock %}
