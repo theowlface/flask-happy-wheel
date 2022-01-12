@@ -18,7 +18,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import UserMixin, login_manager, login_user, LoginManager, login_required, logout_user, current_user
-
+import os
 #Creating flask APP
 app = Flask(__name__)
 #current time 
@@ -26,7 +26,7 @@ moment = Moment(app)
 #secret key for securly singing the session cookie
 app.config["SECRET_KEY"] = "secret keeey"
 #connecting DB
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
 #initialize DB
 db = SQLAlchemy(app)
 #migrate
