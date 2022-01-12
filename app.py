@@ -26,9 +26,9 @@ moment = Moment(app)
 #secret key for securly singing the session cookie
 app.config["SECRET_KEY"] = "secret keeey"
 #connecting DB
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', '').replace(
-        'postgres://', 'postgresql://')
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
+# app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', '').replace(
+#         'postgres://', 'postgresql://')
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
 db = SQLAlchemy(app)
 #migrate
 migrate = Migrate(app, db)
