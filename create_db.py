@@ -9,3 +9,5 @@ def create_talbes():
     db.session.add(User_role)
     db.session.add(x)
     db.session.commit()
+
+create_talbes()
