@@ -26,7 +26,7 @@ moment = Moment(app)
 #secret key for securly singing the session cookie
 app.config["SECRET_KEY"] = "secret keeey"
 #connecting DB
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
+app.config['SQLALCHEMY_DATABASE_URI'] ='DATABASE_URL'
 #initialize DB
 db = SQLAlchemy(app)
 #migrate
